@@ -29,7 +29,7 @@ ENV HTTP_PATH=/dns-query
 ENV SERVER_ADDRESS=1.1.1.1:53
 ENV TIMEOUT=10
 
-ENTRYPOINT exec /usr/local/bin/doh-proxy \
+ENTRYPOINT exec su -l _doh_proxy -s /bin/sh -p -c "/usr/local/bin/doh-proxy \
 	--err-ttl $ERR_TTL \
 	--listen-address $LISTEN_ADDRESS \
 	--local-bind-address $LOCAL_BIND_ADDRESS \
@@ -38,4 +38,4 @@ ENTRYPOINT exec /usr/local/bin/doh-proxy \
 	--min-ttl $MIN_TTL \
 	--path $HTTP_PATH \
 	--server-address $SERVER_ADDRESS \
-	--timeout $TIMEOUT
+	--timeout $TIMEOUT"
